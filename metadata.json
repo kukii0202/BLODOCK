@@ -1,0 +1,6 @@
+{
+  "name": "BLODOCK (블독)",
+  "description": "작성부터 발행 · 배포까지 - Blog + Dock 블로그 통합 발행 및 배포 허브 플랫폼",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
