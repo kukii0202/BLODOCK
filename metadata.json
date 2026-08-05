@@ -1,0 +1,6 @@
+{
+  "name": "원영이의 애드센스 블로그 에디터",
+  "description": "구글 애드센스 승인과 고수익을 위한 최신 지침을 반영하고 초보자도 쉽게 글을 쓸 수 있도록 돕는 전문 블로그 에디터 조력자 '원영'과의 글쓰기 서비스입니다.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
