@@ -8,7 +8,9 @@ export interface BlogImage {
   sourceUrl?: string;
   insertedParagraphIndex: number;
   englishKeyword?: string;
-  provider?: 'Unsplash' | 'Pexels' | 'Pixabay' | 'QuickChart';
+  provider?: 'Pollinations' | 'Unsplash' | 'Pexels' | 'Pixabay' | 'QuickChart';
+  fallbackUrl?: string;
+  fallbackProvider?: 'Pollinations' | 'Unsplash' | 'Pexels' | 'Pixabay' | 'QuickChart';
 }
 
 export interface VerificationReport {

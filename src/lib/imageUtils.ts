@@ -1,12 +1,12 @@
 import { BlogImage } from "../types";
 
-export type StockProvider = 'Unsplash' | 'Pexels' | 'Pixabay' | 'QuickChart';
+export type StockProvider = 'Pollinations' | 'Unsplash' | 'Pexels' | 'Pixabay' | 'QuickChart';
 
 interface StockPhoto {
   url: string;
   alt: string;
   keyword: string;
-  provider: StockProvider;
+  provider: Exclude<StockProvider, 'Pollinations' | 'QuickChart'>;
 }
 
 // Multi-provider high-res realistic stock photo database
@@ -170,6 +170,17 @@ const MULTI_PROVIDER_PHOTOS: Record<string, StockPhoto[]> = {
 };
 
 /**
+ * Generate a Pollinations AI image URL with prompt engineering for editorial blog quality
+ */
+export function createPollinationsImageUrl(keywordEn: string, seed?: number): string {
+  const cleanKeyword = keywordEn.replace(/[^a-zA-Z0-9\s,-]/g, ' ').trim() || "modern technology workspace";
+  const prompt = `editorial realistic professional photo of ${cleanKeyword}, highly detailed, clean lighting, 8k resolution, blog cover photo style`;
+  const encodedPrompt = encodeURIComponent(prompt);
+  const randomSeed = seed ?? Math.floor(Math.random() * 899999 + 100000);
+  return `https://image.pollinations.ai/prompt/${encodedPrompt}?width=1200&height=800&nologo=true&seed=${randomSeed}`;
+}
+
+/**
  * Return external stock platform direct search links so user can easily search Unsplash, Pexels, and Pixabay
  */
 export function getExternalStockSearchUrls(keywordEn: string) {
@@ -182,13 +193,22 @@ export function getExternalStockSearchUrls(keywordEn: string) {
 }
 
 /**
- * Get a photo based on English search term and selected provider filter ('Unsplash' | 'Pexels' | 'Pixabay' | 'all')
+ * Get a photo based on English search term and selected provider filter
+ * Defaults to Pollinations AI generation first, with stock photo fallback
  */
 export function getPhotoByEnglishSearch(
   keywordEn: string, 
   category: string, 
   preferredProvider?: StockProvider | 'all'
-): { url: string; alt: string; source: string; keyword: string; provider: StockProvider } {
+): { 
+  url: string; 
+  alt: string; 
+  source: string; 
+  keyword: string; 
+  provider: StockProvider;
+  fallbackUrl: string;
+  fallbackProvider: StockProvider;
+} {
   const kwLower = keywordEn.toLowerCase();
   
   let keyGroup = "lifestyle";
@@ -204,24 +224,37 @@ export function getPhotoByEnglishSearch(
     keyGroup = "travel";
   }
 
-  let pool = MULTI_PROVIDER_PHOTOS[keyGroup] || MULTI_PROVIDER_PHOTOS.lifestyle;
+  let stockPool = MULTI_PROVIDER_PHOTOS[keyGroup] || MULTI_PROVIDER_PHOTOS.lifestyle;
 
-  // Filter by provider if requested and valid
-  if (preferredProvider && preferredProvider !== 'all' && preferredProvider !== 'QuickChart') {
-    const filtered = pool.filter(p => p.provider === preferredProvider);
-    if (filtered.length > 0) {
-      pool = filtered;
-    }
+  // Select a fallback stock photo
+  const stockSelected = stockPool[Math.floor(Math.random() * stockPool.length)];
+
+  // If user explicitly chose a specific stock provider (Unsplash, Pexels, or Pixabay)
+  if (preferredProvider === 'Unsplash' || preferredProvider === 'Pexels' || preferredProvider === 'Pixabay') {
+    const filtered = stockPool.filter(p => p.provider === preferredProvider);
+    const chosen = filtered.length > 0 ? filtered[Math.floor(Math.random() * filtered.length)] : stockSelected;
+
+    return {
+      url: chosen.url,
+      alt: chosen.alt,
+      source: `${chosen.provider} Free Stock Photo (Search: "${keywordEn}")`,
+      keyword: keywordEn,
+      provider: chosen.provider,
+      fallbackUrl: createPollinationsImageUrl(keywordEn),
+      fallbackProvider: 'Pollinations'
+    };
   }
 
-  const selected = pool[Math.floor(Math.random() * pool.length)];
-
+  // DEFAULT & PRIMARY: Pollinations AI Generation first!
+  const pollinationsUrl = createPollinationsImageUrl(keywordEn);
   return {
-    url: selected.url,
-    alt: selected.alt,
-    source: `${selected.provider} Free Stock Photo (English search: "${keywordEn}")`,
+    url: pollinationsUrl,
+    alt: `${keywordEn} - Pollinations AI 이미지`,
+    source: `Pollinations AI Image Generator (Prompt: "${keywordEn}")`,
     keyword: keywordEn,
-    provider: selected.provider
+    provider: 'Pollinations',
+    fallbackUrl: stockSelected.url,
+    fallbackProvider: stockSelected.provider
   };
 }
 
@@ -256,7 +289,8 @@ export function createChartUrl(title: string, labels: string[], data: number[]):
 }
 
 /**
- * Generate 1~2 naturally positioned blog images (photos found via English translation search from Unsplash/Pexels/Pixabay or charts)
+ * Generate naturally positioned blog images
+ * PRIMARY: Pollinations AI generation first, with fallback to Unsplash/Pexels/Pixabay stock photos
  */
 export function generateBlogImages(
   category: string,
@@ -266,28 +300,31 @@ export function generateBlogImages(
 ): BlogImage[] {
   const images: BlogImage[] = [];
 
-  // Determine English keywords
   const kw1 = englishKeywords?.[0] || `${category} ${topic} realistic photo`;
   const kw2 = englishKeywords?.[1] || `${topic} detailed guide workflow`;
 
-  // 1. First image: Realistic stock photo found via English search terms (varying providers: Unsplash, Pexels, Pixabay)
-  const photo1 = getPhotoByEnglishSearch(kw1, category, providerFilter || 'Unsplash');
+  // Default provider filter is Pollinations AI primary
+  const targetProvider = providerFilter && providerFilter !== 'all' ? providerFilter : 'Pollinations';
+
+  // 1. Primary image: Pollinations AI Image first (with stock photo fallback)
+  const photo1 = getPhotoByEnglishSearch(kw1, category, targetProvider);
 
   images.push({
     id: 'img_' + Math.random().toString(36).substr(2, 7),
     url: photo1.url,
     type: 'photo',
     alt: photo1.alt,
-    caption: `[이미지 1] ${topic} 주제 고화질 스톡 사진 (${photo1.provider})`,
+    caption: `[이미지 1] ${topic} ${photo1.provider === 'Pollinations' ? 'AI 생성이미지' : '스톡사진'} (${photo1.provider})`,
     source: photo1.source,
     insertedParagraphIndex: 1,
     englishKeyword: kw1,
-    provider: photo1.provider
+    provider: photo1.provider,
+    fallbackUrl: photo1.fallbackUrl,
+    fallbackProvider: photo1.fallbackProvider
   });
 
-  // 2. Second image: An Infographic Chart or another realistic photo from Pexels/Pixabay
+  // 2. Second image: An Infographic Chart or secondary Pollinations / stock photo
   if (Math.random() > 0.35) {
-    // Generate contextual chart
     let chartTitle = `${topic.slice(0, 15)} 핵심 가치 비교`;
     let labels = ['만족도', '효율성', '추천도', '가성비'];
     let data = [88, 92, 95, 85];
@@ -307,6 +344,7 @@ export function generateBlogImages(
     }
 
     const chartUrl = createChartUrl(chartTitle, labels, data);
+    const pollinationsChartFallback = createPollinationsImageUrl(`${chartTitle} infographic bar chart graph visualization`, Math.floor(Math.random() * 100000));
 
     images.push({
       id: 'img_' + Math.random().toString(36).substr(2, 7),
@@ -314,24 +352,26 @@ export function generateBlogImages(
       type: 'chart',
       alt: chartTitle,
       caption: `[차트 1] ${chartTitle} 요약 인포그래픽`,
-      source: "QuickChart Free Infographic Engine",
+      source: "QuickChart Free Engine (Fallback: Pollinations AI)",
       insertedParagraphIndex: 3,
-      provider: "QuickChart"
+      provider: "QuickChart",
+      fallbackUrl: pollinationsChartFallback,
+      fallbackProvider: "Pollinations"
     });
   } else {
-    // Second photo using Pexels or Pixabay for diversity
-    const secondaryProvider = providerFilter && providerFilter !== 'all' ? providerFilter : 'Pexels';
-    const photo2 = getPhotoByEnglishSearch(kw2, category, secondaryProvider);
+    const photo2 = getPhotoByEnglishSearch(kw2, category, targetProvider);
     images.push({
       id: 'img_' + Math.random().toString(36).substr(2, 7),
       url: photo2.url,
       type: 'photo',
       alt: photo2.alt,
-      caption: `[이미지 2] ${topic} 상세 가이드 안내 사진 (${photo2.provider})`,
+      caption: `[이미지 2] ${topic} 상세 가이드 안내 이미지 (${photo2.provider})`,
       source: photo2.source,
       insertedParagraphIndex: 3,
       englishKeyword: kw2,
-      provider: photo2.provider
+      provider: photo2.provider,
+      fallbackUrl: photo2.fallbackUrl,
+      fallbackProvider: photo2.fallbackProvider
     });
   }
 

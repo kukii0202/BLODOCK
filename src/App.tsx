@@ -40,18 +40,46 @@ const TONES = [
 ];
 
 const CATEGORIES = [
-  { value: "일상/생활", label: "일상 및 생활 꿀팁" },
-  { value: "재테크/금융", label: "재테크 및 금융/부동산" },
-  { value: "IT/가전", label: "IT 기기 및 전자제품" },
-  { value: "건강/의학", label: "건강 정보 및 헬스" },
-  { value: "음식/요리", label: "맛집 및 집밥 레시피" },
-  { value: "여행/레저", label: "여행 코스 및 취미" },
+  { value: "일상/생활", label: "🏠 일상 및 생활 꿀팁 (리빙/집안일)" },
+  { value: "재테크/금융", label: "💰 재테크 및 금융/부동산/주식" },
+  { value: "IT/가전/테크", label: "💻 IT 기기 & 가전/AI/모바일" },
+  { value: "건강/의학/헬스", label: "🏥 건강 정보 & 헬스/다이어트" },
+  { value: "음식/맛집/요리", label: "🍳 맛집 추천 & 집밥 레시피/카페" },
+  { value: "여행/레저/캠핑", label: "✈️ 국내외 여행 & 숙소/캠핑/취미" },
+  { value: "뷰티/패션/스타일", label: "💄 뷰티 & 패션/코디/헤어" },
+  { value: "문화/엔터/예술", label: "🎬 영화/드라마 & 도서/공연/게임" },
+  { value: "자기계발/교육/커리어", label: "📚 자기계발 & 자격증/취업/어학" },
+  { value: "육아/반려동물", label: "👶 육아 꿀팁 & 반려견/반려묘 케어" },
+  { value: "시사/뉴스/트렌드", label: "📰 최신 시사/이슈 & 정책/지원금" },
+  { value: "비즈니스/마케팅/부업", label: "💼 창업/부업 & 마케팅/N잡" },
+  { value: "기타/자유주제 (Etc.)", label: "🌐 기타 / 종합 & 자유 주제 (Etc.)" },
 ];
+
+const SUBCATEGORIES_MAP: Record<string, string[]> = {
+  "일상/생활": ["생활 꿀팁", "자취/자취요리", "청소/수납", "인테리어/리빙", "절약/알뜰생활"],
+  "재테크/금융": ["국내/해외 주식", "부동산/청약", "가계부/저축", "절세/지원금", "암호화폐/NFT", "연금/보험"],
+  "IT/가전/테크": ["스마트폰/태블릿", "노트북/PC", "AI/인공지능", "소프트웨어/앱", "스마트가전/음향기기"],
+  "건강/의학/헬스": ["홈트/운동", "다이어트/식단", "영양제/건강식품", "질환/의학정보", "멘탈케어/수면"],
+  "음식/맛집/요리": ["전국 맛집 탐방", "초간단 집밥 레시피", "디저트/카페/베이커리", "밀키트/편의점", "홈파티/안주"],
+  "여행/레저/캠핑": ["국내 여행지 추천", "해외 여행 가이드", "호텔/리조트/숙소", "캠핑/차박", "등산/액티비티"],
+  "뷰티/패션/스타일": ["스킨케어/화장품", "데일리 패션 코디", "헤어/메이크업", "퍼스널컬러/스타일링"],
+  "문화/엔터/예술": ["영화/OTT 드라마 리뷰", "베스트셀러/도서 추천", "음악/공연/전시", "모바일/PC 게임"],
+  "자기계발/교육/커리어": ["자격증/시험 준비", "직장인 커리어/이직", "어학/영어 공부", "독서/생산성 툴"],
+  "육아/반려동물": ["신생아/유아 육아팁", "아이 교육/교구", "반려견 건강/용품", "반려묘 케어/집사일기"],
+  "시사/뉴스/트렌드": ["정부 지원금/정책", "최신 사회 이슈", "글로벌 경제 트렌드", "생활 법률/상식"],
+  "비즈니스/마케팅/부업": ["직장인 부업/N잡", "온라인 쇼핑몰/스마트스토어", "SNS 마케팅/퍼스널브랜딩", "지식창업/PDF"],
+  "기타/자유주제 (Etc.)": ["자유 블로그 포스팅", "종합 정보 큐레이션", "개인 수기/에세이", "리뷰/체험단", "기타 개별 주제"]
+};
 
 const SUGGESTED_TOPICS = [
   { category: "재테크/금융", topic: "사회초년생을 위한 소액 적금 추천 및 만기 달성법" },
   { category: "일상/생활", topic: "스마트폰 배터리 수명을 2배 오래 유지하는 하루 습관" },
-  { category: "IT/가전", topic: "2026년 가성비 태블릿 PC 구매 시 필수 확인 항목" },
+  { category: "IT/가전/테크", topic: "2026년 가성비 태블릿 PC 구매 시 필수 확인 항목" },
+  { category: "건강/의학/헬스", topic: "체지방 감소와 근손실 방지를 위한 효과적인 칼로리 식단" },
+  { category: "음식/맛집/요리", topic: "10분 만에 완성하는 자취생 초간단 원팬 파스타 레시피" },
+  { category: "여행/레저/캠핑", topic: "주말 당일치기 추천! 서울 근교 힐링 드라이브 코스 TOP 5" },
+  { category: "비즈니스/마케팅/부업", topic: "퇴근 후 하루 1시간으로 시작하는 무자본 온라인 부업 가이드" },
+  { category: "기타/자유주제 (Etc.)", topic: "2026년 꼭 알아야 할 주요 생활 혜택 및 유용한 정보 종합 총정리" }
 ];
 
 // Safe Storage helper that works smoothly in any environment
@@ -97,6 +125,7 @@ export default function App() {
   const [tone, setTone] = useState("친근하고 감성적인");
   const [topic, setTopic] = useState("");
   const [category, setCategory] = useState("일상/생활");
+  const [subCategory, setSubCategory] = useState("");
   const [keywords, setKeywords] = useState("");
   const [additionalInfo, setAdditionalInfo] = useState("");
   const [length, setLength] = useState<"short" | "medium" | "long">("medium");
@@ -204,6 +233,10 @@ export default function App() {
     if (!topic.trim()) return;
 
     setLoading(true);
+    const effectiveCategory = subCategory.trim() 
+      ? `${category} (${subCategory.trim()})` 
+      : category;
+
     try {
       let postData: any = null;
 
@@ -212,7 +245,7 @@ export default function App() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           topic,
-          category,
+          category: effectiveCategory,
           platform,
           tone,
           keywords,
@@ -227,7 +260,7 @@ export default function App() {
         console.warn("[App] API server unavailable or HTML response returned. Utilizing client fallback generator:", result.error);
         postData = generateFallbackBlogPost(
           topic,
-          category,
+          effectiveCategory,
           platform,
           tone,
           keywords,
@@ -235,12 +268,12 @@ export default function App() {
         );
       }
       
-      const generatedImages = generateBlogImages(category, topic, postData.imageSearchKeywordsEn);
+      const generatedImages = generateBlogImages(effectiveCategory, topic, postData.imageSearchKeywordsEn);
 
       const newPost: GeneratedPost = {
         id: Math.random().toString(36).substr(2, 9),
         topic,
-        category,
+        category: effectiveCategory,
         platform,
         tone,
         title: postData.title,
@@ -536,44 +569,99 @@ export default function App() {
                 </div>
 
                 {/* 4. Grid: Field Category & Length */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
-                      4. 분야 세부 카테고리
-                    </label>
-                    <select
-                      value={category}
-                      onChange={(e) => setCategory(e.target.value)}
-                      className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
-                    >
-                      {CATEGORIES.map((cat) => (
-                        <option key={cat.value} value={cat.value}>
-                          {cat.label}
-                        </option>
-                      ))}
-                    </select>
+                <div className="space-y-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+                        4. 분야 메인 카테고리
+                      </label>
+                      <select
+                        value={category}
+                        onChange={(e) => {
+                          setCategory(e.target.value);
+                          setSubCategory("");
+                        }}
+                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all text-slate-800"
+                      >
+                        {CATEGORIES.map((cat) => (
+                          <option key={cat.value} value={cat.value}>
+                            {cat.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+                        5. 글의 타깃 분량
+                      </label>
+                      <div className="flex bg-slate-100 p-1 rounded-xl gap-1">
+                        {(["short", "medium", "long"] as const).map((len) => (
+                          <button
+                            key={len}
+                            type="button"
+                            onClick={() => setLength(len)}
+                            className={`flex-1 py-1.5 text-xs font-bold rounded-lg capitalize transition-all ${
+                              length === len 
+                                ? "bg-white text-emerald-700 shadow-xs" 
+                                : "text-slate-500 hover:text-slate-800"
+                            }`}
+                          >
+                            {len === "short" ? "단문" : len === "long" ? "장문" : "표준"}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
                   </div>
 
-                  <div>
-                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
-                      5. 글의 타깃 분량
-                    </label>
-                    <div className="flex bg-slate-100 p-1 rounded-xl gap-1">
-                      {(["short", "medium", "long"] as const).map((len) => (
+                  {/* Subcategory Tag Chips & Direct Input */}
+                  <div className="p-3 bg-slate-50/80 border border-slate-200/80 rounded-xl space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] font-bold text-slate-600 flex items-center gap-1">
+                        <span>🏷️ 세부 분야 / 하위 카테고리 (선택)</span>
+                        {subCategory && (
+                          <span className="text-[10px] text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded font-bold">
+                            "{subCategory}" 선택됨
+                          </span>
+                        )}
+                      </span>
+                      {subCategory && (
                         <button
-                          key={len}
                           type="button"
-                          onClick={() => setLength(len)}
-                          className={`flex-1 py-1.5 text-xs font-bold rounded-lg capitalize transition-all ${
-                            length === len 
-                              ? "bg-white text-emerald-700 shadow-xs" 
-                              : "text-slate-500 hover:text-slate-800"
-                          }`}
+                          onClick={() => setSubCategory("")}
+                          className="text-[10px] text-slate-400 hover:text-slate-600 underline"
                         >
-                          {len === "short" ? "단문" : len === "long" ? "장문" : "표준"}
+                          초기화
                         </button>
-                      ))}
+                      )}
                     </div>
+
+                    {SUBCATEGORIES_MAP[category] && SUBCATEGORIES_MAP[category].length > 0 && (
+                      <div className="flex flex-wrap gap-1.5 pt-0.5">
+                        {SUBCATEGORIES_MAP[category].map((sub) => (
+                          <button
+                            key={sub}
+                            type="button"
+                            onClick={() => setSubCategory(subCategory === sub ? "" : sub)}
+                            className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all border ${
+                              subCategory === sub
+                                ? "bg-indigo-600 text-white border-indigo-600 shadow-2xs font-bold"
+                                : "bg-white text-slate-600 border-slate-200 hover:bg-slate-100"
+                            }`}
+                          >
+                            {sub}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+
+                    <input
+                      type="text"
+                      value={subCategory}
+                      onChange={(e) => setSubCategory(e.target.value)}
+                      placeholder="원하는 세부 분야를 직접 입력할 수 있습니다 (예: 2026 청년 정책, 오마카세 리뷰, 자유 서술 등)"
+                      className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-slate-800"
+                    />
                   </div>
                 </div>
 
