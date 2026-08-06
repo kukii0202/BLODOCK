@@ -1,20 +1,12 @@
 import { BlogImage } from "../types";
 
-<<<<<<< HEAD
 export type StockProvider = 'Pollinations' | 'Unsplash' | 'Pexels' | 'Pixabay' | 'QuickChart';
-=======
-export type StockProvider = 'Unsplash' | 'Pexels' | 'Pixabay' | 'QuickChart';
->>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
 
 interface StockPhoto {
   url: string;
   alt: string;
   keyword: string;
-<<<<<<< HEAD
   provider: Exclude<StockProvider, 'Pollinations' | 'QuickChart'>;
-=======
-  provider: StockProvider;
->>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
 }
 
 // Multi-provider high-res realistic stock photo database
@@ -178,7 +170,6 @@ const MULTI_PROVIDER_PHOTOS: Record<string, StockPhoto[]> = {
 };
 
 /**
-<<<<<<< HEAD
  * Generate a Pollinations AI image URL with prompt engineering for editorial blog quality
  */
 export function createPollinationsImageUrl(keywordEn: string, seed?: number): string {
@@ -190,8 +181,6 @@ export function createPollinationsImageUrl(keywordEn: string, seed?: number): st
 }
 
 /**
-=======
->>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
  * Return external stock platform direct search links so user can easily search Unsplash, Pexels, and Pixabay
  */
 export function getExternalStockSearchUrls(keywordEn: string) {
@@ -204,18 +193,13 @@ export function getExternalStockSearchUrls(keywordEn: string) {
 }
 
 /**
-<<<<<<< HEAD
  * Get a photo based on English search term and selected provider filter
  * Defaults to Pollinations AI generation first, with stock photo fallback
-=======
- * Get a photo based on English search term and selected provider filter ('Unsplash' | 'Pexels' | 'Pixabay' | 'all')
->>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
  */
 export function getPhotoByEnglishSearch(
   keywordEn: string, 
   category: string, 
   preferredProvider?: StockProvider | 'all'
-<<<<<<< HEAD
 ): { 
   url: string; 
   alt: string; 
@@ -225,9 +209,6 @@ export function getPhotoByEnglishSearch(
   fallbackUrl: string;
   fallbackProvider: StockProvider;
 } {
-=======
-): { url: string; alt: string; source: string; keyword: string; provider: StockProvider } {
->>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
   const kwLower = keywordEn.toLowerCase();
   
   let keyGroup = "lifestyle";
@@ -243,7 +224,6 @@ export function getPhotoByEnglishSearch(
     keyGroup = "travel";
   }
 
-<<<<<<< HEAD
   let stockPool = MULTI_PROVIDER_PHOTOS[keyGroup] || MULTI_PROVIDER_PHOTOS.lifestyle;
 
   // Select a fallback stock photo
@@ -275,26 +255,6 @@ export function getPhotoByEnglishSearch(
     provider: 'Pollinations',
     fallbackUrl: stockSelected.url,
     fallbackProvider: stockSelected.provider
-=======
-  let pool = MULTI_PROVIDER_PHOTOS[keyGroup] || MULTI_PROVIDER_PHOTOS.lifestyle;
-
-  // Filter by provider if requested and valid
-  if (preferredProvider && preferredProvider !== 'all' && preferredProvider !== 'QuickChart') {
-    const filtered = pool.filter(p => p.provider === preferredProvider);
-    if (filtered.length > 0) {
-      pool = filtered;
-    }
-  }
-
-  const selected = pool[Math.floor(Math.random() * pool.length)];
-
-  return {
-    url: selected.url,
-    alt: selected.alt,
-    source: `${selected.provider} Free Stock Photo (English search: "${keywordEn}")`,
-    keyword: keywordEn,
-    provider: selected.provider
->>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
   };
 }
 
@@ -329,12 +289,8 @@ export function createChartUrl(title: string, labels: string[], data: number[]):
 }
 
 /**
-<<<<<<< HEAD
  * Generate naturally positioned blog images
  * PRIMARY: Pollinations AI generation first, with fallback to Unsplash/Pexels/Pixabay stock photos
-=======
- * Generate 1~2 naturally positioned blog images (photos found via English translation search from Unsplash/Pexels/Pixabay or charts)
->>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
  */
 export function generateBlogImages(
   category: string,
@@ -344,7 +300,6 @@ export function generateBlogImages(
 ): BlogImage[] {
   const images: BlogImage[] = [];
 
-<<<<<<< HEAD
   const kw1 = englishKeywords?.[0] || `${category} ${topic} realistic photo`;
   const kw2 = englishKeywords?.[1] || `${topic} detailed guide workflow`;
 
@@ -353,21 +308,12 @@ export function generateBlogImages(
 
   // 1. Primary image: Pollinations AI Image first (with stock photo fallback)
   const photo1 = getPhotoByEnglishSearch(kw1, category, targetProvider);
-=======
-  // Determine English keywords
-  const kw1 = englishKeywords?.[0] || `${category} ${topic} realistic photo`;
-  const kw2 = englishKeywords?.[1] || `${topic} detailed guide workflow`;
-
-  // 1. First image: Realistic stock photo found via English search terms (varying providers: Unsplash, Pexels, Pixabay)
-  const photo1 = getPhotoByEnglishSearch(kw1, category, providerFilter || 'Unsplash');
->>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
 
   images.push({
     id: 'img_' + Math.random().toString(36).substr(2, 7),
     url: photo1.url,
     type: 'photo',
     alt: photo1.alt,
-<<<<<<< HEAD
     caption: `[이미지 1] ${topic} ${photo1.provider === 'Pollinations' ? 'AI 생성이미지' : '스톡사진'} (${photo1.provider})`,
     source: photo1.source,
     insertedParagraphIndex: 1,
@@ -379,18 +325,6 @@ export function generateBlogImages(
 
   // 2. Second image: An Infographic Chart or secondary Pollinations / stock photo
   if (Math.random() > 0.35) {
-=======
-    caption: `[이미지 1] ${topic} 주제 고화질 스톡 사진 (${photo1.provider})`,
-    source: photo1.source,
-    insertedParagraphIndex: 1,
-    englishKeyword: kw1,
-    provider: photo1.provider
-  });
-
-  // 2. Second image: An Infographic Chart or another realistic photo from Pexels/Pixabay
-  if (Math.random() > 0.35) {
-    // Generate contextual chart
->>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
     let chartTitle = `${topic.slice(0, 15)} 핵심 가치 비교`;
     let labels = ['만족도', '효율성', '추천도', '가성비'];
     let data = [88, 92, 95, 85];
@@ -410,10 +344,7 @@ export function generateBlogImages(
     }
 
     const chartUrl = createChartUrl(chartTitle, labels, data);
-<<<<<<< HEAD
     const pollinationsChartFallback = createPollinationsImageUrl(`${chartTitle} infographic bar chart graph visualization`, Math.floor(Math.random() * 100000));
-=======
->>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
 
     images.push({
       id: 'img_' + Math.random().toString(36).substr(2, 7),
@@ -421,7 +352,6 @@ export function generateBlogImages(
       type: 'chart',
       alt: chartTitle,
       caption: `[차트 1] ${chartTitle} 요약 인포그래픽`,
-<<<<<<< HEAD
       source: "QuickChart Free Engine (Fallback: Pollinations AI)",
       insertedParagraphIndex: 3,
       provider: "QuickChart",
@@ -430,22 +360,11 @@ export function generateBlogImages(
     });
   } else {
     const photo2 = getPhotoByEnglishSearch(kw2, category, targetProvider);
-=======
-      source: "QuickChart Free Infographic Engine",
-      insertedParagraphIndex: 3,
-      provider: "QuickChart"
-    });
-  } else {
-    // Second photo using Pexels or Pixabay for diversity
-    const secondaryProvider = providerFilter && providerFilter !== 'all' ? providerFilter : 'Pexels';
-    const photo2 = getPhotoByEnglishSearch(kw2, category, secondaryProvider);
->>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
     images.push({
       id: 'img_' + Math.random().toString(36).substr(2, 7),
       url: photo2.url,
       type: 'photo',
       alt: photo2.alt,
-<<<<<<< HEAD
       caption: `[이미지 2] ${topic} 상세 가이드 안내 이미지 (${photo2.provider})`,
       source: photo2.source,
       insertedParagraphIndex: 3,
@@ -453,13 +372,6 @@ export function generateBlogImages(
       provider: photo2.provider,
       fallbackUrl: photo2.fallbackUrl,
       fallbackProvider: photo2.fallbackProvider
-=======
-      caption: `[이미지 2] ${topic} 상세 가이드 안내 사진 (${photo2.provider})`,
-      source: photo2.source,
-      insertedParagraphIndex: 3,
-      englishKeyword: kw2,
-      provider: photo2.provider
->>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
     });
   }
 

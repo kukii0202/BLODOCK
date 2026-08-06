@@ -1,11 +1,6 @@
 {
-<<<<<<< HEAD
   "name": "BLODOCK (블독)",
   "description": "작성부터 발행 · 배포까지 - Blog + Dock 블로그 통합 발행 및 배포 허브 플랫폼",
-=======
-  "name": "원영이의 애드센스 블로그 에디터",
-  "description": "구글 애드센스 승인과 고수익을 위한 최신 지침을 반영하고 초보자도 쉽게 글을 쓸 수 있도록 돕는 전문 블로그 에디터 조력자 '원영'과의 글쓰기 서비스입니다.",
->>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
