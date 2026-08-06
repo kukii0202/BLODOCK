@@ -110,6 +110,7 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
     }
   };
 
+<<<<<<< HEAD
   // Image loading fallback error handler
   const handleImageError = (imgId: string) => {
     setImages((prevImages) =>
@@ -131,6 +132,10 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
 
   // Provider search filter state (Defaults to Pollinations AI primary)
   const [selectedProvider, setSelectedProvider] = useState<StockProvider | 'all'>('Pollinations');
+=======
+  // Provider search filter state
+  const [selectedProvider, setSelectedProvider] = useState<StockProvider | 'all'>('all');
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
 
   // Primary English keyword for search links
   const primaryKwEn = post.imageSearchKeywordsEn?.[0] || `${post.category} ${post.topic}`;
@@ -160,9 +165,13 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
       source: photoResult.source,
       insertedParagraphIndex: images.length > 0 ? 2 : 1,
       englishKeyword: searchKw,
+<<<<<<< HEAD
       provider: photoResult.provider,
       fallbackUrl: photoResult.fallbackUrl,
       fallbackProvider: photoResult.fallbackProvider
+=======
+      provider: photoResult.provider
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
     };
 
     const updated = [...images, newImage];
@@ -186,9 +195,13 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
           alt: newPhoto.alt,
           source: newPhoto.source,
           provider: newPhoto.provider,
+<<<<<<< HEAD
           fallbackUrl: newPhoto.fallbackUrl,
           fallbackProvider: newPhoto.fallbackProvider,
           caption: `[${newPhoto.provider} 생성/교체] ${post.topic} 고화질 이미지`
+=======
+          caption: `[${newPhoto.provider} 교체] ${post.topic} 고화질 사진`
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
         };
       }
       return img;
@@ -291,7 +304,11 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
             </span>
           </div>
           <h2 className="text-lg font-bold text-slate-800 mt-2 tracking-tight">
+<<<<<<< HEAD
             BLODOCK 발행 준비 완료: <span className="text-slate-900">{editedTitle}</span>
+=======
+            원영이와 함께 만든 완성본: <span className="text-slate-900">{editedTitle}</span>
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
           </h2>
           <p className="text-xs text-slate-400 mt-1">생성 시간: {new Date(post.timestamp).toLocaleString("ko-KR")}</p>
         </div>
@@ -312,17 +329,28 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
             onClick={handleCopy}
             className="inline-flex items-center gap-1.5 px-3 py-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 rounded-xl text-xs font-medium transition-all"
           >
+<<<<<<< HEAD
             {copied ? <Check className="w-3.5 h-3.5 text-indigo-600" /> : <Copy className="w-3.5 h-3.5" />}
+=======
+            {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
             {copied ? "복사 완료!" : "전체 복사"}
           </button>
           
           <button
             onClick={handleVerify}
             disabled={verifying}
+<<<<<<< HEAD
             className="inline-flex items-center gap-1.5 px-3 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300 text-white rounded-xl text-xs font-medium transition-all shadow-xs"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${verifying ? "animate-spin" : ""}`} />
             {verifying ? "진단 중..." : "BLODOCK SEO 진단"}
+=======
+            className="inline-flex items-center gap-1.5 px-3 py-2 bg-emerald-600 hover:bg-emerald-700 disabled:bg-emerald-300 text-white rounded-xl text-xs font-medium transition-all shadow-xs"
+          >
+            <RefreshCw className={`w-3.5 h-3.5 ${verifying ? "animate-spin" : ""}`} />
+            {verifying ? "진단 중..." : "원영이의 SEO 진단"}
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
           </button>
 
           {onDeletePost && (
@@ -391,7 +419,11 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
                 }`}
               >
                 <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+<<<<<<< HEAD
                 BLODOCK SEO 진단결과
+=======
+                원영이의 진단결과
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                 <span className="bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded-md text-[10px]">
                   {post.score}점
                 </span>
@@ -411,7 +443,11 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
 
                 {/* Header bar */}
                 <div className="pt-6 px-4 pb-3 bg-slate-50 border-b border-slate-100 flex justify-between items-center text-[10px] text-slate-400 font-mono">
+<<<<<<< HEAD
                   <span>BLODOCK Hub</span>
+=======
+                  <span>Wonyoung Blog</span>
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                   <span>10:20 AM</span>
                 </div>
 
@@ -425,10 +461,17 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
                     </h1>
                     <div className="flex items-center justify-between mt-2">
                       <div className="flex items-center gap-2">
+<<<<<<< HEAD
                         <div className="w-5 h-5 rounded-full bg-indigo-600 text-[10px] text-white flex items-center justify-center font-bold">
                           BD
                         </div>
                         <span className="text-[10px] font-medium text-slate-500">작성자: BLODOCK Editor</span>
+=======
+                        <div className="w-5 h-5 rounded-full bg-emerald-500 text-[10px] text-white flex items-center justify-center font-bold">
+                          원
+                        </div>
+                        <span className="text-[10px] font-medium text-slate-500">작성자: 원영조력</span>
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                       </div>
                       <span className="text-[9px] text-slate-400">읽기 ~{readTimeMin}분</span>
                     </div>
@@ -484,7 +527,10 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
                                     src={imgToInsert.url} 
                                     alt={imgToInsert.alt} 
                                     referrerPolicy="no-referrer"
+<<<<<<< HEAD
                                     onError={() => handleImageError(imgToInsert.id)}
+=======
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                                     className="w-full h-auto object-cover max-h-[220px]"
                                   />
                                   
@@ -544,6 +590,7 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
           {/* Tab 2: Image & Chart Manager Gallery */}
           {activeTab === "images" && (
             <div className="space-y-6">
+<<<<<<< HEAD
               <div className="p-4 bg-purple-50/70 border border-purple-100 rounded-xl space-y-4">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div>
@@ -553,45 +600,86 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
                     </h4>
                     <p className="text-[11px] text-purple-700 mt-0.5">
                       폴리네이션 AI(Pollinations)에서 맞춤형 고화질 이미지를 1차적으로 생성하며, 접속 차단 시 Unsplash / Pexels / Pixabay 무료 스톡으로 자동 안전 전환됩니다.
+=======
+              <div className="p-4 bg-emerald-50/60 border border-emerald-100 rounded-xl space-y-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div>
+                    <h4 className="text-xs font-bold text-emerald-900 flex items-center gap-1.5">
+                      <Globe className="w-4 h-4 text-emerald-600" />
+                      다중 스톡 사이트(Unsplash, Pexels, Pixabay) 번역 매칭 ({images.length}개)
+                    </h4>
+                    <p className="text-[11px] text-emerald-700 mt-0.5">
+                      언스플래시, 픽셀스, 픽사베이 등 다양한 무료 스톡 플랫폼을 영어 키워드로 통합 검색하여 현실적이고 유용한 이미지를 추천합니다.
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                     </p>
                   </div>
                   <div className="flex gap-2 shrink-0">
                     <button
                       onClick={handleRegenerateImages}
+<<<<<<< HEAD
                       className="px-3 py-1.5 bg-white text-purple-800 border border-purple-200 rounded-lg text-xs font-bold hover:bg-purple-100 transition-all flex items-center gap-1 shadow-2xs"
                     >
                       <RefreshCcw className="w-3 h-3" />
                       AI 이미지 / 차트 전체 재생성
+=======
+                      className="px-3 py-1.5 bg-white text-emerald-700 border border-emerald-200 rounded-lg text-xs font-bold hover:bg-emerald-100 transition-all flex items-center gap-1 shadow-2xs"
+                    >
+                      <RefreshCcw className="w-3 h-3" />
+                      전체 이미지 랜덤 재추천
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                     </button>
                   </div>
                 </div>
 
                 {/* Stock provider filter chips */}
+<<<<<<< HEAD
                 <div className="pt-2 border-t border-purple-100 flex flex-wrap items-center gap-2">
                   <span className="text-[10px] font-bold text-purple-800 uppercase tracking-wider flex items-center gap-1">
                     <Filter className="w-3 h-3" />
                     선호 엔진 / 사이트:
                   </span>
                   {(['Pollinations', 'all', 'Unsplash', 'Pexels', 'Pixabay'] as const).map((prov) => (
+=======
+                <div className="pt-2 border-t border-emerald-100/80 flex flex-wrap items-center gap-2">
+                  <span className="text-[10px] font-bold text-emerald-800 uppercase tracking-wider flex items-center gap-1">
+                    <Filter className="w-3 h-3" />
+                    선호 스톡 사이트:
+                  </span>
+                  {(['all', 'Unsplash', 'Pexels', 'Pixabay'] as const).map((prov) => (
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                     <button
                       key={prov}
                       type="button"
                       onClick={() => setSelectedProvider(prov)}
                       className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
                         selectedProvider === prov
+<<<<<<< HEAD
                           ? "bg-purple-700 text-white shadow-xs"
                           : "bg-white text-slate-600 border border-purple-200 hover:bg-purple-100/60"
                       }`}
                     >
                       {prov === 'Pollinations' ? '✨ 폴리네이션 AI (우선)' : prov === 'all' ? '전체 엔진' : prov}
+=======
+                          ? "bg-emerald-700 text-white shadow-xs"
+                          : "bg-white text-slate-600 border border-emerald-200 hover:bg-emerald-100/60"
+                      }`}
+                    >
+                      {prov === 'all' ? '전체 (모든 스톡)' : prov}
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                     </button>
                   ))}
                 </div>
 
                 {/* Direct External Search Links Bar */}
+<<<<<<< HEAD
                 <div className="p-3 bg-white/80 border border-purple-100 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <div className="text-[11px] font-medium text-slate-700">
                     💡 무료 스톡 사이트에서 직접 검색하기:
+=======
+                <div className="p-3 bg-white/80 border border-emerald-100 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div className="text-[11px] font-medium text-slate-700">
+                    💡 원하는 사진이 없을 경우 해외 스톡 사이트에서 직접 찾기:
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                   </div>
                   <div className="flex flex-wrap items-center gap-2 text-xs">
                     <a
@@ -632,15 +720,26 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
                       type="text"
                       value={customKeywordInput}
                       onChange={(e) => setCustomKeywordInput(e.target.value)}
+<<<<<<< HEAD
                       placeholder="원하는 키워드를 영문으로 직접 입력해 AI 이미지 추가 (예: futuristic cyber desk, financial chart)"
                       className="w-full pl-9 pr-3 py-1.5 bg-white border border-purple-200 rounded-lg text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-purple-500 font-pretendard"
+=======
+                      placeholder="원하는 키워드를 영문으로 직접 입력해 사진 추가 (예: workspace macbook, financial graph)"
+                      className="w-full pl-9 pr-3 py-1.5 bg-white border border-emerald-200 rounded-lg text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 font-pretendard"
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                     />
                   </div>
                   <button
                     type="submit"
+<<<<<<< HEAD
                     className="px-3 py-1.5 bg-purple-700 hover:bg-purple-800 text-white rounded-lg text-xs font-bold shrink-0 transition-all shadow-xs"
                   >
                     AI 이미지 생성 추가
+=======
+                    className="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-lg text-xs font-bold shrink-0 transition-all shadow-xs"
+                  >
+                    영문 키워드 추가
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                   </button>
                 </form>
               </div>
@@ -660,17 +759,26 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
                             </>
                           ) : (
                             <>
+<<<<<<< HEAD
                               <ImageIcon className="w-3.5 h-3.5 text-purple-600" />
                               {img.provider === 'Pollinations' ? 'AI 생성 이미지' : '스톡 사진'} #{idx + 1}
+=======
+                              <ImageIcon className="w-3.5 h-3.5 text-sky-600" />
+                              스톡 사진 #{idx + 1}
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                             </>
                           )}
                         </span>
                         
                         {/* Provider Tag */}
                         <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${
+<<<<<<< HEAD
                           img.provider === 'Pollinations'
                             ? 'bg-purple-100 text-purple-900 border border-purple-200 font-black'
                             : img.provider === 'Pexels' 
+=======
+                          img.provider === 'Pexels' 
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                             ? 'bg-teal-100 text-teal-800' 
                             : img.provider === 'Pixabay'
                             ? 'bg-indigo-100 text-indigo-800'
@@ -678,7 +786,11 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
                             ? 'bg-sky-100 text-sky-800'
                             : 'bg-emerald-100 text-emerald-800'
                         }`}>
+<<<<<<< HEAD
                           {img.provider || (img.type === 'chart' ? 'QuickChart' : 'Pollinations')}
+=======
+                          {img.provider || (img.type === 'chart' ? 'QuickChart' : 'Unsplash')}
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                         </span>
                       </div>
 
@@ -688,7 +800,10 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
                           src={img.url} 
                           alt={img.alt} 
                           referrerPolicy="no-referrer"
+<<<<<<< HEAD
                           onError={() => handleImageError(img.id)}
+=======
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                           className="w-full h-full object-cover"
                         />
                         <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
@@ -710,6 +825,7 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
                         
                         <div className="flex flex-wrap items-center gap-2 pt-1">
                           {img.englishKeyword && (
+<<<<<<< HEAD
                             <span className="text-[10px] text-purple-700 font-mono bg-purple-50 px-2 py-0.5 rounded inline-block">
                               프롬프트 키워드: "{img.englishKeyword}"
                             </span>
@@ -717,6 +833,10 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
                           {img.fallbackProvider && (
                             <span className="text-[10px] text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded">
                               대체 수단: {img.fallbackProvider}
+=======
+                            <span className="text-[10px] text-emerald-700 font-mono bg-emerald-50 px-2 py-0.5 rounded inline-block">
+                              검색어: "{img.englishKeyword}"
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                             </span>
                           )}
                         </div>
@@ -724,18 +844,31 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
                         {/* Quick Provider Switch Buttons for photos */}
                         {img.type === 'photo' && (
                           <div className="pt-2 border-t border-slate-100 flex items-center gap-1 text-[10px]">
+<<<<<<< HEAD
                             <span className="font-semibold text-slate-500">엔진/사이트 변경:</span>
                             {(['Pollinations', 'Pexels', 'Unsplash', 'Pixabay'] as const).map(p => (
+=======
+                            <span className="font-semibold text-slate-500">다른 사이트 사진으로 교체:</span>
+                            {(['Pexels', 'Unsplash', 'Pixabay'] as const).map(p => (
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                               <button
                                 key={p}
                                 onClick={() => handleReplaceSingleImageProvider(img.id, p)}
                                 className={`px-1.5 py-0.5 rounded font-bold border transition-all ${
                                   img.provider === p 
+<<<<<<< HEAD
                                     ? "bg-purple-900 text-white border-purple-900" 
                                     : "bg-white text-slate-600 border-slate-200 hover:bg-slate-100"
                                 }`}
                               >
                                 {p === 'Pollinations' ? '✨폴리네이션' : p}
+=======
+                                    ? "bg-slate-800 text-white border-slate-800" 
+                                    : "bg-white text-slate-600 border-slate-200 hover:bg-slate-100"
+                                }`}
+                              >
+                                {p}
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                               </button>
                             ))}
                           </div>
@@ -855,6 +988,7 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
           {activeTab === "analysis" && post.verificationReport && (
             <div className="space-y-6">
               {/* Score Indicator Banner */}
+<<<<<<< HEAD
               <div className="p-5 bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-100 rounded-xl flex items-center justify-between">
                 <div>
                   <h4 className="text-sm font-bold text-slate-800">BLODOCK 발행 및 SEO 가능성 진단</h4>
@@ -865,6 +999,18 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
                     {post.verificationReport.score}
                   </div>
                   <span className="text-[10px] text-indigo-700 font-bold mt-1">100점 만점</span>
+=======
+              <div className="p-5 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-100 rounded-xl flex items-center justify-between">
+                <div>
+                  <h4 className="text-sm font-bold text-slate-800">원영이의 애드센스 합격 가능성 진단</h4>
+                  <p className="text-xs text-slate-500 mt-1">구글 블로거와 애드센스 기준에 맞춰 종합 평가한 점수입니다.</p>
+                </div>
+                <div className="flex items-center justify-center flex-col shrink-0">
+                  <div className="text-3xl font-extrabold text-amber-600 bg-white border border-amber-200 w-16 h-16 rounded-full flex items-center justify-center shadow-xs">
+                    {post.verificationReport.score}
+                  </div>
+                  <span className="text-[10px] text-amber-700 font-bold mt-1">100점 만점</span>
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                 </div>
               </div>
 
@@ -917,12 +1063,21 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
               </div>
 
               {/* Cheer Message */}
+<<<<<<< HEAD
               <div className="p-4 bg-indigo-50/80 border border-indigo-100 rounded-xl relative overflow-hidden">
                 <div className="absolute right-2 bottom-0 text-indigo-100 opacity-30 pointer-events-none text-6xl font-black">
                   BLODOCK
                 </div>
                 <h5 className="text-xs font-bold text-indigo-800 mb-1">⚓ BLODOCK 발행 메이트 어드바이스</h5>
                 <p className="text-xs text-indigo-700 leading-relaxed italic">
+=======
+              <div className="p-4 bg-emerald-50 border border-emerald-100 rounded-xl relative overflow-hidden">
+                <div className="absolute right-2 bottom-0 text-emerald-100 opacity-20 pointer-events-none text-7xl font-bold">
+                  원영
+                </div>
+                <h5 className="text-xs font-bold text-emerald-800 mb-1">💝 동반자 원영이의 따뜻한 한마디</h5>
+                <p className="text-xs text-emerald-700 leading-relaxed italic">
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                   "{post.verificationReport.wonyoungCheerMessage}"
                 </p>
               </div>
@@ -1015,7 +1170,11 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
               <div className="bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-100 p-4 rounded-xl">
                 <div className="flex items-center gap-1.5 text-emerald-800 text-xs font-bold mb-1">
                   <Bookmark className="w-3.5 h-3.5" />
+<<<<<<< HEAD
                   <span>BLODOCK 애드센스 비밀 수익 팁</span>
+=======
+                  <span>원영이의 애드센스 비밀 수익 팁</span>
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                 </div>
                 <p className="text-xs text-emerald-700 leading-normal">
                   {post.wonyoungTip}
@@ -1025,7 +1184,11 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
           </div>
 
           <div className="pt-6 border-t border-slate-200/60 text-center text-[11px] text-slate-400">
+<<<<<<< HEAD
             구글 Blogger 업로드 전, 우측 상단의 <strong className="text-emerald-600">BLODOCK SEO 진단</strong> 버튼을 꼭 눌러보세요!
+=======
+            구글 Blogger 업로드 전, 우측 상단의 <strong className="text-emerald-600">원영이의 SEO 진단</strong> 버튼을 꼭 눌러보세요!
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
           </div>
         </div>
 
@@ -1046,7 +1209,11 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
               {previewImage.type === 'chart' ? (
                 <BarChart3 className="w-5 h-5 text-emerald-600" />
               ) : (
+<<<<<<< HEAD
                 <ImageIcon className="w-5 h-5 text-purple-600" />
+=======
+                <ImageIcon className="w-5 h-5 text-sky-600" />
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
               )}
               <h3 className="text-base font-bold text-slate-800">
                 {previewImage.caption}
@@ -1058,7 +1225,10 @@ export default function BlogPreview({ post, onUpdatePost, onDeletePost }: BlogPr
                 src={previewImage.url} 
                 alt={previewImage.alt} 
                 referrerPolicy="no-referrer"
+<<<<<<< HEAD
                 onError={() => handleImageError(previewImage.id)}
+=======
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                 className="max-h-[380px] w-auto object-contain"
               />
             </div>

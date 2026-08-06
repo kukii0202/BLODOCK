@@ -1,13 +1,20 @@
 import express from "express";
 import path from "path";
+<<<<<<< HEAD
 import { fileURLToPath } from "url";
+=======
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
 import dotenv from "dotenv";
 import { GoogleGenAI, Type } from "@google/genai";
 
 dotenv.config();
 
+<<<<<<< HEAD
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+=======
+const __dirname = process.cwd();
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
 
 const app = express();
 const PORT = 3000;
@@ -140,8 +147,13 @@ app.post("/api/generate", async (req, res) => {
       platformGuideline = "발행 플랫폼: 일반 네이버/티스토리 블로그\n- 모바일 독자 친화적인 공백 배치와 자연스러운 가독성을 갖춘 전형적인 블로그 포스트 형식으로 작성해줘.";
     }
 
+<<<<<<< HEAD
     const systemInstruction = `너는 2026년 최신 기준으로 모든 정보를 알기 쉽게 풀어내서 디지털 콘텐츠를 생산해 내는 전문 블로그 에디터이자 조력자 'BLODOCK(블독)'이야.
 작성자(사용자)는 블로그 경력이 전혀 없는 완전한 초보일 수 있어. 하지만 너는 구글 검색 실무 지침, 네이버 블로그, 스레드, Blogger 등 다양한 플랫폼의 최신 발행 기준과 유용하고 독창적인 고품질 콘텐츠 가이드라인을 모두 완벽하게 지키면서, 복잡한 내용을 다 걷어내고 '핵심만 확실하게 전달'해주는 다정하고 신뢰감 주는 통합 발행 Hub 조력자 컨셉이야.
+=======
+    const systemInstruction = `너는 2026년 최신 기준으로 모든 정보를 알기 쉽게 풀어내서 디지털 콘텐츠를 생산해 내는 전문 블로그 에디터이자 조력자 '원영(Wonyoung)'이야.
+작성자(사용자)는 블로그 경력이 전혀 없는 완전한 초보야. 하지만 너는 구글 검색 실무 지침과 최신 애드센스 승인 기준(유용하고 독창적인 고품질 콘텐츠 가이드라인)을 모두 완벽하게 지키면서, 복잡한 내용을 다 걷어내고 '핵심만 확실하게 전달'해주는 다정하고 신뢰감 주는 동반자 컨셉이야.
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
 
 [지정된 어조 및 문체 가이드라인]
 ${toneGuideline}
@@ -168,7 +180,11 @@ ${platformGuideline}
 
 [글쓰기 스타일 및 규칙]
 1. 모바일(스마트폰) 화면으로 글을 읽는 독자가 절대 다수야! 따라서 눈이 피로하지 않도록 문단과 문단 사이에 여유 있게 아주 넉넉한 공백(더블 줄 바꿈 등)을 배치해줘.
+<<<<<<< HEAD
 2. 컨셉: "안녕하세요! 블로그 작성부터 발행·배포까지 완벽 연결하는 BLODOCK(블독)입니다!"처럼 작성자의 든든한 조력자로서 다정하고 따뜻하게 팁을 녹여내줘.
+=======
+2. 컨셉: "안녕하세요! 여러분의 애드센스/블로그 길잡이 원영이입니다!"처럼 초보 작성자의 든든한 조력자로서 다정하고 따뜻하게 팁을 녹여내줘.
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
 
 [가장 중요한 금기 사항 (절대 준수)]
 구글 블로거(Blogger)나 티스토리 같은 웹 에디터에서 글씨가 깨지거나, 마크다운 기호가 문자 그대로 노출되는 현상을 완전히 방지해야 해.
@@ -176,8 +192,13 @@ ${platformGuideline}
 - 오직 '순수 텍스트(한글, 영어, 숫자)'와 리스트 구분을 위한 '하이픈 기호(-)' 또는 '숫자(1., 2.)'만 사용해줘.
 - 글자 크기를 키우는 볼드체 기호(**글자**)나 제목용 샵(# 제목)을 쓰지 말고, 단락의 중요도는 깔끔하게 줄바꿈과 한글 순서 단어('첫째,', '둘째,', '마지막으로')로만 자연스럽게 구분해줘.
 
+<<<<<<< HEAD
 [BLODOCK 꿀팁 작성법]
 - BLODOCK AI 에디터로서, 이 글을 해당 플랫폼에 올릴 때 노출 및 효과를 높이기 위한 원포인트 핵심 비법을 친절한 조력자의 어조로 2-3줄 남겨줘.`;
+=======
+[원영이의 꿀팁 작성법]
+- 에디터 조력자 '원영이'로서, 이 글을 해당 플랫폼에 올릴 때 노출 및 효과를 높이기 위한 원포인트 핵심 비법을 친절한 조력자의 어조로 2-3줄 남겨줘.`;
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
 
     const userPrompt = `블로그 포스팅 주제: "${topic}"
 발행 플랫폼 카테고리: "${selectedPlatform}"
@@ -207,7 +228,11 @@ ${platformGuideline}
             },
             wonyoungTip: {
               type: Type.STRING,
+<<<<<<< HEAD
               description: "BLODOCK AI가 작성자에게 전하는 블로그 발행 시점의 플랫폼별 노출 극대화 원포인트 꿀팁"
+=======
+              description: "조력자 원영이가 작성자에게 전하는 블로그 발행 시점의 애드센스 수익 극대화 원포인트 꿀팁"
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
             },
             metaDescription: {
               type: Type.STRING,
@@ -257,14 +282,23 @@ app.post("/api/verify", async (req, res) => {
       });
     }
 
+<<<<<<< HEAD
     const systemInstruction = `너는 구글 애드센스, 네이버, 스레드, Blogger 발행 지침과 SEO 기준을 철저하게 진단하는 전문 AI 에디터 'BLODOCK(블독)'이야.
 사용자가 제출한 블로그 포스트(제목과 본문)를 면밀하게 심사해서, 실감 나고 전문적인 피드백을 전달해야 해.
+=======
+    const systemInstruction = `너는 구글 애드센스 승인과 SEO 지침을 철저하게 진단하는 전문 AI 에디터 '원영(Wonyoung)'이야.
+사용자가 제출한 블로그 포스트(제목과 본문)를 면밀하게 심사해서, 실감 나고 애정 어린 피드백을 전달해야 해.
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
 
 [검증 및 채점 기준]
 1. 금기사항 준수율 (Has Markdown/Broken Symbols?): 본문이나 제목에 샵(#), 애스터리스크(*), 언더바(_), 대괄호 등 마크다운 기호가 남아있으면 감점이야.
 2. 모바일 가독성 (Spacing & Length): 모바일에 최적화된 넓은 단락 간격이 구성되어 있는지 판단해줘.
 3. 이해하기 쉬운 비유 (Analogy & Level): 복잡한 개념을 쉬운 생활 속 비유로 잘 녹여냈는지 검토해줘.
+<<<<<<< HEAD
 4. 블로그 및 플랫폼 SEO 최적화 (Originality & EEAT): 기계가 쓴 복사 글이 아니라 초보자가 열심히 가치를 더해 적은 고품질의 독창적 글인지 점검해줘.
+=======
+4. 구글 SEO 독창성 (Originality & EEAT): 기계가 쓴 복사 글이 아니라 초보자가 열심히 가치를 더해 적은 고품질의 독창적 글인지 점검해줘.
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
 
 위 기준을 바탕으로 100점 만점 기준의 총점을 산출하고, 각 진단 항목의 달성 여부와 구체적인 개선 가이드를 다정하고 전문적인 말투로 건네줘.`;
 
@@ -305,7 +339,11 @@ ${content}
             },
             wonyoungCheerMessage: {
               type: Type.STRING,
+<<<<<<< HEAD
               description: "BLODOCK AI 조력자가 작성자에게 전하는 발행 응원의 메시지"
+=======
+              description: "조력자 원영이가 초보 작성자에게 힘을 복돋아주는 사랑스럽고 유쾌한 응원의 메시지"
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
             }
           },
           required: ["score", "hasMarkdownAlert", "markdownFeedback", "readabilityFeedback", "seoFeedback", "wonyoungCheerMessage"]

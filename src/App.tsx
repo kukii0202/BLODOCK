@@ -21,8 +21,12 @@ import {
   Plus,
   AlertTriangle,
   X,
+<<<<<<< HEAD
   RotateCcw,
   Anchor
+=======
+  RotateCcw
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
 } from "lucide-react";
 
 const PLATFORMS = [
@@ -40,6 +44,7 @@ const TONES = [
 ];
 
 const CATEGORIES = [
+<<<<<<< HEAD
   { value: "일상/생활", label: "🏠 일상 및 생활 꿀팁 (리빙/집안일)" },
   { value: "재테크/금융", label: "💰 재테크 및 금융/부동산/주식" },
   { value: "IT/가전/테크", label: "💻 IT 기기 & 가전/AI/모바일" },
@@ -80,6 +85,20 @@ const SUGGESTED_TOPICS = [
   { category: "여행/레저/캠핑", topic: "주말 당일치기 추천! 서울 근교 힐링 드라이브 코스 TOP 5" },
   { category: "비즈니스/마케팅/부업", topic: "퇴근 후 하루 1시간으로 시작하는 무자본 온라인 부업 가이드" },
   { category: "기타/자유주제 (Etc.)", topic: "2026년 꼭 알아야 할 주요 생활 혜택 및 유용한 정보 종합 총정리" }
+=======
+  { value: "일상/생활", label: "일상 및 생활 꿀팁" },
+  { value: "재테크/금융", label: "재테크 및 금융/부동산" },
+  { value: "IT/가전", label: "IT 기기 및 전자제품" },
+  { value: "건강/의학", label: "건강 정보 및 헬스" },
+  { value: "음식/요리", label: "맛집 및 집밥 레시피" },
+  { value: "여행/레저", label: "여행 코스 및 취미" },
+];
+
+const SUGGESTED_TOPICS = [
+  { category: "재테크/금융", topic: "사회초년생을 위한 소액 적금 추천 및 만기 달성법" },
+  { category: "일상/생활", topic: "스마트폰 배터리 수명을 2배 오래 유지하는 하루 습관" },
+  { category: "IT/가전", topic: "2026년 가성비 태블릿 PC 구매 시 필수 확인 항목" },
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
 ];
 
 // Safe Storage helper that works smoothly in any environment
@@ -125,7 +144,10 @@ export default function App() {
   const [tone, setTone] = useState("친근하고 감성적인");
   const [topic, setTopic] = useState("");
   const [category, setCategory] = useState("일상/생활");
+<<<<<<< HEAD
   const [subCategory, setSubCategory] = useState("");
+=======
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
   const [keywords, setKeywords] = useState("");
   const [additionalInfo, setAdditionalInfo] = useState("");
   const [length, setLength] = useState<"short" | "medium" | "long">("medium");
@@ -147,7 +169,11 @@ export default function App() {
   // Load posts and trash from storage & server on mount
   useEffect(() => {
     // 1. Try safeStorage
+<<<<<<< HEAD
     const saved = safeStorage.getItem("blodock_blog_drafts") || safeStorage.getItem("wonyoung_blog_drafts");
+=======
+    const saved = safeStorage.getItem("wonyoung_blog_drafts");
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
@@ -160,7 +186,11 @@ export default function App() {
       }
     }
 
+<<<<<<< HEAD
     const savedTrash = safeStorage.getItem("blodock_blog_trash") || safeStorage.getItem("wonyoung_blog_trash");
+=======
+    const savedTrash = safeStorage.getItem("wonyoung_blog_trash");
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
     if (savedTrash) {
       try {
         const parsedTrash = JSON.parse(savedTrash);
@@ -190,7 +220,11 @@ export default function App() {
   // Save posts to storage and sync with server
   const savePostsToStorage = (updatedPosts: GeneratedPost[]) => {
     setPosts(updatedPosts);
+<<<<<<< HEAD
     safeStorage.setItem("blodock_blog_drafts", JSON.stringify(updatedPosts));
+=======
+    safeStorage.setItem("wonyoung_blog_drafts", JSON.stringify(updatedPosts));
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
     safeFetchJson("/api/posts", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -201,7 +235,11 @@ export default function App() {
   // Save trash to storage and sync with server
   const saveTrashToStorage = (updatedTrash: GeneratedPost[]) => {
     setDeletedPosts(updatedTrash);
+<<<<<<< HEAD
     safeStorage.setItem("blodock_blog_trash", JSON.stringify(updatedTrash));
+=======
+    safeStorage.setItem("wonyoung_blog_trash", JSON.stringify(updatedTrash));
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
     safeFetchJson("/api/trash", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -224,8 +262,13 @@ export default function App() {
   const loadingMessages = [
     "어려운 개념을 아주 쉬운 생활 비유법으로 변환하는 중입니다...",
     "스마트폰 독자분들이 편하게 스크롤할 수 있도록 시원한 공백을 나누고 있습니다...",
+<<<<<<< HEAD
     "Blogger 및 블로그 에디터에서 깨질 만한 마크다운 기호를 정성스레 지우고 있습니다...",
     "BLODOCK만의 플랫폼 맞춤형 최적화 노하우 팁을 아낌없이 녹여내고 있습니다..."
+=======
+    "Blogger 에디터에서 깨질 만한 마크다운 기호를 정성스레 지우고 있습니다...",
+    "원영이만의 구글 애드센스 비밀 수익 노하우 팁을 아낌없이 녹여내고 있습니다..."
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
   ];
 
   const handleGenerate = async (e: React.FormEvent) => {
@@ -233,10 +276,13 @@ export default function App() {
     if (!topic.trim()) return;
 
     setLoading(true);
+<<<<<<< HEAD
     const effectiveCategory = subCategory.trim() 
       ? `${category} (${subCategory.trim()})` 
       : category;
 
+=======
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
     try {
       let postData: any = null;
 
@@ -245,7 +291,11 @@ export default function App() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           topic,
+<<<<<<< HEAD
           category: effectiveCategory,
+=======
+          category,
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
           platform,
           tone,
           keywords,
@@ -260,7 +310,11 @@ export default function App() {
         console.warn("[App] API server unavailable or HTML response returned. Utilizing client fallback generator:", result.error);
         postData = generateFallbackBlogPost(
           topic,
+<<<<<<< HEAD
           effectiveCategory,
+=======
+          category,
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
           platform,
           tone,
           keywords,
@@ -268,12 +322,20 @@ export default function App() {
         );
       }
       
+<<<<<<< HEAD
       const generatedImages = generateBlogImages(effectiveCategory, topic, postData.imageSearchKeywordsEn);
+=======
+      const generatedImages = generateBlogImages(category, topic, postData.imageSearchKeywordsEn);
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
 
       const newPost: GeneratedPost = {
         id: Math.random().toString(36).substr(2, 9),
         topic,
+<<<<<<< HEAD
         category: effectiveCategory,
+=======
+        category,
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
         platform,
         tone,
         title: postData.title,
@@ -446,6 +508,7 @@ export default function App() {
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-emerald-100 selection:text-emerald-900">
       
       {/* Top Header Brand Bar */}
+<<<<<<< HEAD
       <header className="bg-white/95 backdrop-blur-md border-b border-indigo-100/80 py-3.5 px-6 sticky top-0 z-30 shadow-2xs">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -467,6 +530,24 @@ export default function App() {
               <span className="font-semibold text-xs">Hub: GitHub · Render · Blogger · Naver</span>
             </div>
             <span className="font-bold text-slate-700 hidden lg:inline">배포 허브 연결 완료</span>
+=======
+      <header className="bg-white border-b border-slate-200 py-4 px-6 sticky top-0 z-30 shadow-xs">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-black text-sm shadow-md shadow-emerald-200">
+              WY
+            </div>
+            <div>
+              <span className="text-xs text-slate-400 font-semibold tracking-wide block uppercase leading-none">AI Studio Editor</span>
+              <span className="text-sm font-extrabold text-slate-800 tracking-tight">원영이의 애드센스 에디터</span>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-4 text-xs font-medium text-slate-500">
+            <span className="hidden sm:inline bg-slate-100 px-3 py-1.5 rounded-lg">접속환경: 2026 Google Core API v4</span>
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="font-bold text-slate-700">작성 에디터 연결 완료</span>
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
           </div>
         </div>
       </header>
@@ -569,6 +650,7 @@ export default function App() {
                 </div>
 
                 {/* 4. Grid: Field Category & Length */}
+<<<<<<< HEAD
                 <div className="space-y-3">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
@@ -662,6 +744,46 @@ export default function App() {
                       placeholder="원하는 세부 분야를 직접 입력할 수 있습니다 (예: 2026 청년 정책, 오마카세 리뷰, 자유 서술 등)"
                       className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-slate-800"
                     />
+=======
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+                      4. 분야 세부 카테고리
+                    </label>
+                    <select
+                      value={category}
+                      onChange={(e) => setCategory(e.target.value)}
+                      className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
+                    >
+                      {CATEGORIES.map((cat) => (
+                        <option key={cat.value} value={cat.value}>
+                          {cat.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+                      5. 글의 타깃 분량
+                    </label>
+                    <div className="flex bg-slate-100 p-1 rounded-xl gap-1">
+                      {(["short", "medium", "long"] as const).map((len) => (
+                        <button
+                          key={len}
+                          type="button"
+                          onClick={() => setLength(len)}
+                          className={`flex-1 py-1.5 text-xs font-bold rounded-lg capitalize transition-all ${
+                            length === len 
+                              ? "bg-white text-emerald-700 shadow-xs" 
+                              : "text-slate-500 hover:text-slate-800"
+                          }`}
+                        >
+                          {len === "short" ? "단문" : len === "long" ? "장문" : "표준"}
+                        </button>
+                      ))}
+                    </div>
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                   </div>
                 </div>
 
@@ -693,8 +815,13 @@ export default function App() {
                   <textarea
                     value={additionalInfo}
                     onChange={(e) => setAdditionalInfo(e.target.value)}
+<<<<<<< HEAD
                     placeholder="관련된 핵심 팩트나 복사한 관련 기사/메모를 입력하세요. BLODOCK AI가 독자 친화적인 원스톱 블로그 콘텐츠로 정교하게 재가공해 드립니다."
                     className="w-full h-24 p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-slate-700 resize-none"
+=======
+                    placeholder="관련된 핵심 팩트나 복사한 관련 기사/메모를 마음껏 적어보세요. 원영이가 최신 블로그 말투와 쉬운 예시로 싹 재가공해 드릴게요."
+                    className="w-full h-24 p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all text-slate-700 resize-none"
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                   />
                 </div>
 
@@ -702,17 +829,29 @@ export default function App() {
                 <button
                   type="submit"
                   disabled={loading}
+<<<<<<< HEAD
                   className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300 text-white font-bold py-3.5 px-4 rounded-xl text-sm transition-all shadow-md shadow-indigo-100 flex items-center justify-center gap-2"
+=======
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 disabled:bg-emerald-300 text-white font-bold py-3.5 px-4 rounded-xl text-sm transition-all shadow-md shadow-emerald-100 flex items-center justify-center gap-2"
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                 >
                   {loading ? (
                     <>
                       <RefreshCw className="w-4 h-4 animate-spin" />
+<<<<<<< HEAD
                       BLODOCK AI 초집중 콘텐츠 작성 중...
+=======
+                      원영이 초집중 집필 중...
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                     </>
                   ) : (
                     <>
                       <Sparkles className="w-4 h-4" />
+<<<<<<< HEAD
                       BLODOCK 원스톱 글 생성하기
+=======
+                      구글 최적화 글 짓기 시작
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                     </>
                   )}
                 </button>
@@ -857,27 +996,47 @@ export default function App() {
               /* Writing Loader Box */
               <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm flex flex-col items-center justify-center text-center min-h-[480px]">
                 <div className="relative mb-6">
+<<<<<<< HEAD
                   <div className="w-20 h-20 rounded-full border-4 border-indigo-100 border-t-indigo-600 animate-spin flex items-center justify-center" />
                   <div className="absolute inset-0 flex items-center justify-center text-indigo-600 font-black text-xs tracking-tighter animate-pulse">
                     BLODOCK
+=======
+                  <div className="w-20 h-20 rounded-full border-4 border-emerald-100 border-t-emerald-600 animate-spin flex items-center justify-center" />
+                  <div className="absolute inset-0 flex items-center justify-center text-emerald-600 font-extrabold text-lg animate-pulse">
+                    원영
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                   </div>
                 </div>
 
                 <h3 className="text-lg font-bold text-slate-800 tracking-tight mb-2">
+<<<<<<< HEAD
                   "잠시만요! 플랫폼에 맞춘 완벽한 블로그 포스팅을 작성 중입니다!"
+=======
+                  "잠시만요! 독자분들이 감동할 글을 짓고 있어요!"
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                 </h3>
                 
                 {/* Simulated Writing Steps */}
                 <div className="max-w-md w-full bg-slate-50 p-4 border border-slate-100 rounded-xl mt-4">
+<<<<<<< HEAD
                   <p className="text-xs font-semibold text-indigo-600 tracking-wider uppercase mb-2">실시간 집필 공정</p>
+=======
+                  <p className="text-xs font-semibold text-emerald-600 tracking-wider uppercase mb-2">실시간 집필 공정</p>
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                   <div className="space-y-2">
                     {loadingMessages.map((msg, i) => (
                       <div key={i} className="flex items-center gap-2 text-left text-xs text-slate-500">
                         <div className={`w-4 h-4 rounded-full flex items-center justify-center text-[10px] ${
                           loadingStep > i 
+<<<<<<< HEAD
                             ? "bg-indigo-600 text-white" 
                             : loadingStep === i 
                             ? "bg-indigo-100 text-indigo-700 font-bold animate-pulse" 
+=======
+                            ? "bg-emerald-500 text-white" 
+                            : loadingStep === i 
+                            ? "bg-emerald-100 text-emerald-700 font-bold animate-pulse" 
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                             : "bg-slate-200 text-slate-400"
                         }`}>
                           {loadingStep > i ? "✓" : i + 1}
@@ -891,7 +1050,11 @@ export default function App() {
                 </div>
 
                 <p className="text-[11px] text-slate-400 mt-6">
+<<<<<<< HEAD
                   선택하신 플랫폼 및 SEO 노출 최적화에 맞추어 정밀 작성 중입니다. 약 10~15초 소요될 수 있어요.
+=======
+                  구글 애드센스에 최적화된 고유한 어조를 정밀하게 분석 중입니다. 약 10~15초 소요될 수 있어요.
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                 </p>
               </div>
             ) : activePost ? (
@@ -905,12 +1068,21 @@ export default function App() {
               /* Empty State (Guides & Inspiration) */
               <div className="space-y-6">
                 <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-xs text-center flex flex-col items-center justify-center min-h-[300px]">
+<<<<<<< HEAD
                   <div className="w-14 h-14 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
                     <PenTool className="w-6 h-6" />
                   </div>
                   <h3 className="text-base font-bold text-slate-800 mb-1.5">아직 생성된 블로그 글이 없습니다.</h3>
                   <p className="text-xs text-slate-500 max-w-sm leading-relaxed mb-5">
                     왼쪽 양식에 글의 핵심 주제를 적고 "BLODOCK 원스톱 글 생성하기" 버튼을 누르시면, BLODOCK AI가 독자와 검색 엔진 모두 감탄할 고품질 포스팅을 바로 작성해 드립니다!
+=======
+                  <div className="w-14 h-14 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mb-4">
+                    <PenTool className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-base font-bold text-slate-800 mb-1.5">아직 생성된 애드센스 블로그 글이 없습니다.</h3>
+                  <p className="text-xs text-slate-500 max-w-sm leading-relaxed mb-5">
+                    왼쪽 양식에 글의 핵심 주제를 적고 "글 짓기 시작" 버튼을 누르시면, 조력자 원영이가 구글 로봇과 독자가 모두 감탄할 친근한 글을 써 드립니다!
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
                   </p>
                   <div className="flex gap-2">
                     <span className="text-[10px] font-bold text-slate-400 border border-slate-200 px-2 py-1 rounded bg-slate-50">
@@ -935,9 +1107,15 @@ export default function App() {
       {/* Footer info */}
       <footer className="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-400 mt-16">
         <div className="max-w-7xl mx-auto px-6">
+<<<<<<< HEAD
           <p>© 2026 BLODOCK (블독). All Rights Reserved. Blog + Dock Integrated Publishing Hub.</p>
           <p className="mt-1 text-[11px] text-slate-300">
             검색엔진 가이드라인 및 플랫폼 정책을 성실히 준수하며 생성 시 어떠한 마크다운 서식 깨짐도 억제하여 순수한 콘텐츠 가치를 확보합니다.
+=======
+          <p>© 2026 원영이의 애드센스 에디터. All Rights Reserved. Crafted in Google AI Studio Workspace.</p>
+          <p className="mt-1 text-[11px] text-slate-300">
+            구글 서치 가이드라인 및 애드센스 정책을 성실히 준수하며 생성 시 어떠한 마크다운 서식도 억제하여 순수한 가치를 확보합니다.
+>>>>>>> 1e1c487de519d7936327d2b58b80e154d45956e0
           </p>
         </div>
       </footer>
